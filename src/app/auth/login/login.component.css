@@ -1,0 +1,11 @@
+.card-logo {
+    padding: 20%;
+}
+.mat-progress-spinner {
+    display: initial;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.mat-progress-spinner::ng-deep circle {
+    stroke: #fff;
+  }

@@ -1,0 +1,64 @@
+<div class="app-body">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mx-auto">
+          <div class="card-group">
+            <div class="card p-4">
+              <div class="card-body">
+                <!-- <img src="assets/img/icones/logo.svg" /> -->
+              </div>
+            </div>
+            <div class="card p-4">
+              <div class="card-body">
+                <form [formGroup]="formGroup" (ngSubmit)="login()">
+                  <h1>Identification</h1>
+                  <p class="text-muted">Connectez-vous pour accéder a cotre espace</p>
+                  <alert type="danger mb-4" *ngIf="errors.badCredentials">
+                    <strong>Oop !</strong> {{ errors.badCredentials }}.
+                  </alert>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    </div>
+                    <input formControlName="email" type="text" class="form-control" [ngClass]="{'is-invalid': validateItem('email')||errors.badCredentials}"
+                      placeholder="Email" autocomplete="email" [attr.disabled]="isSubmitted ? 'disabled' : null"
+                      (input)="clearCredentialsErrors()" />
+                    <div class="invalid-feedback" *ngIf="validateItem('email')&&getFormErrors('email').required">
+                      {{ errors.email.required }}
+                    </div>
+                    <div class="invalid-feedback" *ngIf="validateItem('email')&&getFormErrors('email').email">
+                      {{ errors.email.email }}
+                    </div>
+                  </div>
+                  <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-lock"></i></span>
+                    </div>
+                    <input formControlName="password" type="password" class="form-control" [ngClass]="{'is-invalid': validateItem('password')||errors.badCredentials}"
+                      placeholder="Mot de passe" autocomplete="mot de passe" [attr.disabled]="isSubmitted ? 'disabled' : null"
+                      (input)="clearCredentialsErrors()" />
+                    <div class="invalid-feedback" *ngIf="validateItem('password')&&getFormErrors('password').required">
+                      {{ errors.password.required }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <button type="submit" class="btn btn-primary px-4" [disabled]="formGroup.invalid" style="display:inline-block">
+                        Se connecter <mat-progress-spinner [color]="color" [mode]="mode" [value]="value" [diameter]="20"
+                          *ngIf="isSubmitted"></mat-progress-spinner>
+                      </button>
+                    </div>
+                    <div class="col-6 text-right">
+                      <button type="button" class="btn btn-link px-0">Mot de passe oubliée ?</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
